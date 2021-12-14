@@ -1,5 +1,5 @@
 import time
-start_time = time.time()
+start_time = time.perf_counter()
 
 input = open("input5.txt").read().split("\n")
 lineas = []
@@ -55,4 +55,4 @@ for p in puntos:
 
 print(total)
 
-print("--- %s seconds ---" % (time.time() - start_time))
+print("--- %s seconds ---" % (time.perf_counter() - start_time))
