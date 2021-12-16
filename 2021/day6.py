@@ -17,7 +17,8 @@ for k,v in conteos:
     conteos_dict[k] = v
 
 temporal = 0
-for x in range(256):
+DIAS = 256
+for x in range(DIAS):
     for k,v in conteos_dict.items():
         if k == 0:
             temporal = v
