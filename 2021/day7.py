@@ -19,7 +19,7 @@ def calcular_distancia(punto, lista):
         valor, rep = i
         distancia = punto - valor
         if distancia < 0: distancia *= -1
-        # Parte 2 en parte 2
+        # Distancia en parte 2
         distancia = (distancia * (distancia + 1))/2
         total += distancia * rep
     return total
