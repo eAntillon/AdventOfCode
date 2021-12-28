@@ -93,3 +93,4 @@ for point in low_points:
 
 mayores = heapq.nlargest(3, sizes)
 print( mayores[0] * mayores[1] * mayores[2] )
+print("--- %s seconds ---" % (time.perf_counter() - start_time))

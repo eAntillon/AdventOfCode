@@ -1,3 +1,5 @@
+import time
+start_time = time.perf_counter()
 
 archivo = open("input8.txt").read().split("\n")
 datos = []
@@ -12,3 +14,4 @@ for input, output in datos:
             contador += 1               
 
 print(contador)
+print("--- %s seconds ---" % (time.perf_counter() - start_time))
