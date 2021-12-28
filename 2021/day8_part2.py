@@ -1,8 +1,6 @@
 import time
-import pprint
 
 start_time = time.perf_counter()
-pp = pprint.PrettyPrinter(depth=4)
 
 archivo = open("input8.txt").read().split("\n")
 datos = []
