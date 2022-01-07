@@ -1,5 +1,4 @@
 import time
-from typing import final
 
 start_time = time.perf_counter()
 
