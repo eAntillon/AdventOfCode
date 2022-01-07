@@ -2,7 +2,7 @@ import time
 start_time = time.perf_counter()
 
 
-archivo = open("input11.txt").read().split("\n")
+archivo = open("test/input11.txt").read().split("\n")
 # archivo = open("test.txt").read().split("\n")
 def toIntArray(string):
     arr  = list(string.strip())
