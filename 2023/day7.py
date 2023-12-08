@@ -119,7 +119,7 @@ for line in input:
             hand = hands["one pair"]
     else:
         hand = 0
-    print(f" c:{cards} h:{hand} b:{bid} spp:{strength_per_position}")
+    # print(f" c:{cards} h:{hand} b:{bid} spp:{strength_per_position}")
     cards_arr.append((bid, hand, strength_per_position, cards))
 
     sorted_plays.append((bid, hand, strength_per_position, cards))
