@@ -69,7 +69,7 @@ for i in visited:
     x, y = i
     grid[y][x] = 3
 
-print(len(visited) + len(points))
+print("Part 1:", len(visited) + len(points))
 
 
 # Part 2
@@ -85,7 +85,7 @@ for line in input_lines:
     # hex to int
     n = int(hex, 16)
     dir = color[-1]
-    print(color,hex, n, dir)
+    # print(color,hex, n, dir)
     points_count += n 
     match dir:
         case "0":
@@ -109,5 +109,5 @@ area = polygon.area
 b = points_count
 i = (2 * area - b + 2) / 2
 # print(i)
-print(i + points_count)
+print("Part 2:", i + points_count)
 
