@@ -85,3 +85,4 @@ for i in accepted:
     acc += total
 
 print("Part 1: ", acc)
+
