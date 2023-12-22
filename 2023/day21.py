@@ -8,8 +8,7 @@ for i in input_lines:
         start = (i.index("S"), input_lines.index(i))
 
 valid_positions = []
-available_steps = 64
-
+available_steps = 50
 
 @lru_cache(maxsize=None)
 def get_neighbours(pos):
@@ -20,19 +19,27 @@ def get_neighbours(pos):
 
     if i < 0:
         extra_i = i
-        i = len(input_lines) - (abs(i) % len(input_lines))
+        r = abs(i) % len(input_lines)
+        if r == 0:
+            i = len(input_lines) - 1
+        else:
+            i = len(input_lines) - r
 
-    if i >= len(input_lines):
+    elif i >= len(input_lines):
         extra_i = i
-        i = i % len(input_lines) - 1
+        i = i % len(input_lines)
 
     if j < 0:
         extra_j = j
-        j = len(input_lines[0]) - (abs(j) % len(input_lines[0]))
+        r = abs(j) % len(input_lines[0])
+        if r == 0:
+            j = len(input_lines[0]) - 1 
+        else:
+            j = len(input_lines[0]) - r
 
-    if j >= len(input_lines[0]):
+    elif j >= len(input_lines[0]):
         extra_j = j
-        j = j % len(input_lines[0]) - 1
+        j = j % len(input_lines[0])
 
     if extra_i is None:
         extra_i = i
@@ -43,7 +50,7 @@ def get_neighbours(pos):
         if input_lines[i - 1][j] != "#":
             neighbours.append((extra_i - 1, extra_j))
     else:
-        if input_lines[len(input_lines) - 1][j] != "#":
+        if input_lines[-1][j] != "#":
             neighbours.append((extra_i - 1, extra_j))
     if i < len(input_lines) - 1:
         if input_lines[i + 1][j] != "#":
@@ -55,7 +62,7 @@ def get_neighbours(pos):
         if input_lines[i][j - 1] != "#":
             neighbours.append((extra_i, extra_j - 1))
     else:
-        if input_lines[i][len(input_lines[0]) - 1] != "#":
+        if input_lines[i][-1] != "#":
             neighbours.append((extra_i, extra_j - 1))
         
     if j < len(input_lines[0]) - 1:
@@ -79,14 +86,13 @@ def get_path(pos, steps):
     return False
 
 
-print(get_path(start, 0))
+get_path(start, 0)
 
+# new_map = input_lines.copy()
+# for i in valid_positions:
+#     new_map[i[0]][i[1]] = "0"
+# for i in new_map:
+#     print("".join(i))
 
-new_map = input_lines.copy()
-for i in valid_positions:
-    new_map[i[0]][i[1]] = "0"
-for i in new_map:
-    print("".join(i))
-
-print(valid_positions)
+# print(valid_positions)
 print(len(valid_positions))
