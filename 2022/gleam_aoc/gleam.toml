@@ -1,0 +1,12 @@
+name = "gleam_aoc"
+version = "1.0.0"
+
+description = "Solution to Advento of Code 2022 in Gleam"
+licences = ["MIT"]
+
+[dependencies]
+gleam_stdlib = ">= 0.34.0 and < 2.0.0"
+simplifile = ">= 2.2.0 and < 3.0.0"
+
+[dev-dependencies]
+gleeunit = ">= 1.0.0 and < 2.0.0"
