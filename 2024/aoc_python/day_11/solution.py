@@ -5,6 +5,7 @@ blinking_times = 75
 
 cache = {}
 
+
 def get_stones_map(input):
     stones = [int(x) for x in input.split(" ")]
     stones_map = {}
@@ -14,6 +15,7 @@ def get_stones_map(input):
         else:
             stones_map[stone] = 1
     return stones_map
+
 
 def get_stones(stone):
     if stone == 0:
@@ -83,5 +85,6 @@ def main():
     et = time.time()
 
     print("Execution time in seconds: ", et-st)
+
 
 main()
