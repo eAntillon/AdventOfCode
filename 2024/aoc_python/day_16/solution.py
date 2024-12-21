@@ -1,5 +1,4 @@
 import time
-from pprint import pprint
 
 def parse_input(input_data):
     maze = [list(x) for x in input_data.split("\n")]
@@ -46,7 +45,7 @@ def part1(input_data):
             q.append((x, y, c, d))
             add_parents(parents, (s[0], s[1]), (x, y, d))
 
-    print("Starting positions", q)
+    # print("Starting positions", q)
     solutions = []
     while q:
         x, y, c, d = q.pop(0)
@@ -140,7 +139,7 @@ def part2(input_data):
 
 
 if __name__ == "__main__":
-    st = time.time()
+    st = time.perf_counter()
 
     input_data = open("./input.txt", "r").read()
     print("Solution for day 16")
@@ -148,6 +147,6 @@ if __name__ == "__main__":
     # print("Part 2: ", part2(input_data))
     part1(input_data)
 
-    et = time.time()
+    et = time.perf_counter()
 
     print("Execution time in seconds: ", et-st)
