@@ -40,18 +40,15 @@ def adv(registries, operand):
     numerator = registries["A"]
     denominator = 2 ** get_combo_operand(registries, operand)
     registries["A"] = numerator // denominator
-    return 0
 
 
 def bxl(registries, operand):
     registries["B"] = registries["B"] ^ operand
-    return 0
 
 
 def bst(registries, operand):
     result = get_combo_operand(registries, operand) % 8
     registries["B"] = result
-    return 0
 
 
 def jnz(registries, operand, pointer):
@@ -64,12 +61,10 @@ def jnz(registries, operand, pointer):
 def bxc(registries, operand):
     result = registries["B"] ^ registries["C"]
     registries["B"] = result
-    return 0
 
 
 def out(registries, operand):
     output.append(get_combo_operand(registries, operand) % 8)
-    return 0
 
 
 def bdv(registries, operand):
@@ -77,15 +72,11 @@ def bdv(registries, operand):
     denominator = 2 ** get_combo_operand(registries, operand)
     registries["B"] = numerator // denominator
 
-    return 0
-
 
 def biv(registries, operand):
     numerator = registries["A"]
     denominator = 2 ** get_combo_operand(registries, operand)
     registries["C"] = numerator // denominator
-
-    return 0
 
 
 def run(registries, program):
@@ -95,33 +86,24 @@ def run(registries, program):
         operand = program[pointer + 1]
         match instruction:
             case 0:
-                # adv
                 adv(registries, operand)
             case 1:
-                # bxl
                 bxl(registries, operand)
             case 2:
-                # bst
                 bst(registries, operand)
             case 3:
-                # jnz
                 c = pointer
                 pointer = jnz(registries, operand, pointer)
                 if c == pointer:
                     pointer += 1
                 continue
             case 4:
-                # bxc
                 bxc(registries, operand)
             case 5:
-                # out
                 out(registries, operand)
             case 6:
-                # bdv
                 bdv(registries, operand)
-
             case 7:
-                # bdv
                 biv(registries, operand)
         pointer += 2
 
@@ -135,15 +117,18 @@ def part1(input_data):
 
 def part2(input_data):
     output.clear()
-    target = [2,4,1,3,7,5,1,5,0,3,4,2,5,5,3,0]
-    # ever 2^3 changes one position, 2*45 get a output of len 16, 
+    target = [2, 4, 1, 3, 7, 5, 1, 5, 0, 3, 4, 2, 5, 5, 3, 0]
+    # ever 2^3 changes one position, 2*45 gets an output of len 16,
+    # start search from there, then if matches the last n elements of target,
+    # update the "a" (start) value and reduce the exponent by 3
+
     a = 216584205979176
     _, program = parse_input(input_data)
     while True:
         run({"A": a, "B": 0, "C": 0}, program)
-        print(f"A: {a}, program output: {output}")
-        if output == target:    
-            print(f"Found a match for A: {a}")
+        # print(f"A: {a}, program output: {output}")
+        if output == target:
+            # print(f"Found a match for A: {a}")
             return a
         a += 1
         output.clear()
