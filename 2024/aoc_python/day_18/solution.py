@@ -9,6 +9,7 @@ def parse_input(input_data):
         cords.append((int(x), int(y)))
     return cords
 
+
 def is_valid(memory, position):
     x, y = position
     return x >= 0 and y >= 0 and y < len(memory) and x < len(memory[0])
@@ -22,7 +23,8 @@ def part1(input_data):
 
     end = (70, 70)
 
-    directions = [(0, 1, "DOWN"), (1, 0, "RIGHT"), (0, -1, "UP"), (-1, 0, "LEFT")]
+    directions = [(0, 1, "DOWN"), (1, 0, "RIGHT"),
+                  (0, -1, "UP"), (-1, 0, "LEFT")]
 
     i = 0
     while i < corrupted_bytes:
@@ -79,7 +81,8 @@ def part2(input_data):
     corrupted_bytes = 1024
     memory = [["." for _ in range(71)] for _ in range(71)]
     end = (70, 70)
-    directions = [(0, 1, "DOWN"), (1, 0, "RIGHT"), (0, -1, "UP"), (-1, 0, "LEFT")]
+    directions = [(0, 1, "DOWN"), (1, 0, "RIGHT"),
+                  (0, -1, "UP"), (-1, 0, "LEFT")]
 
     # first 1024 corrupted bytes added
     i = 0

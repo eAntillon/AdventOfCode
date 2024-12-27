@@ -1,5 +1,6 @@
 import time
 
+
 def parse_input(input_data):
     maze = [list(x) for x in input_data.split("\n")]
     return maze
@@ -65,7 +66,7 @@ def part1(input_data):
                 new_c += 1000
             q.append((x+1, y, new_c, "DOWN"))
             add_parents(parents, (x, y, new_c), (x+1, y))
-        
+
         if is_valid(maze, (x-1, y)) and maze[x-1][y] != "#" and d != "DOWN":  # UP
             new_c = c + 1
             if d != "UP":
@@ -73,7 +74,8 @@ def part1(input_data):
             q.append((x-1, y, new_c, "UP"))
             add_parents(parents, (x, y, new_c), (x-1, y))
 
-        if is_valid(maze, (x, y+1)) and maze[x][y+1] != "#" and d != "LEFT":  # RIGHT
+        # RIGHT
+        if is_valid(maze, (x, y+1)) and maze[x][y+1] != "#" and d != "LEFT":
             new_c = c + 1
             if d != "RIGHT":
                 new_c += 1000
@@ -89,7 +91,8 @@ def part1(input_data):
 
     min_sol = min(solutions, key=lambda x: x[2])
 
-    sits = get_sits((min_sol[0], min_sol[1], min_sol[2]), parents, min_sol[2], set())
+    sits = get_sits((min_sol[0], min_sol[1], min_sol[2]),
+                    parents, min_sol[2], set())
     for s in sits:
         maze[s[0]][s[1]] = "O"
     for m in maze:
@@ -123,12 +126,14 @@ def get_sits(pos, parents, solution, sits):
         if pos_cost == solution:
             if parent_cost == pos_cost or parent_cost == pos_cost - 1 or parent_cost == pos_cost - 1000:
                 new_sits.add((p[0], p[1]))
-                parent_sits = get_sits(p, parents, pos_cost, new_sits.union(sits))
+                parent_sits = get_sits(
+                    p, parents, pos_cost, new_sits.union(sits))
                 new_sits = new_sits.union(parent_sits)
         else:
             if parent_cost+1 == solution or parent_cost+1001 == solution or parent_cost == pos_cost-1 or parent_cost == pos_cost-1001:
                 new_sits.add((p[0], p[1]))
-                parent_sits = get_sits(p, parents, pos_cost, new_sits.union(sits))
+                parent_sits = get_sits(
+                    p, parents, pos_cost, new_sits.union(sits))
                 new_sits = new_sits.union(parent_sits)
 
     return new_sits
